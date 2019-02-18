@@ -2,7 +2,7 @@
 
 # Change namespace casa to casacore for Casacore release 2.0.
 
-for FILE in $*
+for FILE in $(find ./ -type f \( -name '*.c' -o -name '*.h' -o -name '*.cpp' -o -name '*.hpp' -o -name '*.cc' -o -name '*.hh' -o -name '*.C' -o -name '*.H' -o -name '*.py' \) -a \( ! -name './.git' -a ! -name './.svn' -a ! -name './.subversion' -a ! -name './' \) -printf "%p ")
 do
   perl -p -i -e s'%namespace +casa([ };])%namespace casacore\1%' "$FILE"
   perl -p -i -e s'%NAMESPACE CASA %NAMESPACE CASACORE %' "$FILE"
